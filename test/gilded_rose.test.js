@@ -1,10 +1,5 @@
 import { Item, Shop } from "../src/gilded_rose";
-
-const DEFAULT_ITEM = "default-item";
-const AGED_BRIE = "Aged Brie";
-const SULFURAS = "Sulfuras, Hand of Ragnaros";
-const BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
-const CONJURED = "Conjured Mana Cake";
+import { AGED_BRIE, BACKSTAGE, DEFAULT_ITEM, SULFURAS, CONJURED } from "../src/constants";
 
 describe("Gilded Rose", function () {
   it("should foo", function () {
