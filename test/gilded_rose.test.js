@@ -81,11 +81,7 @@ describe("Aged Brie", function () {
 
 describe("Sulfuras, Legendary item", function () {
   it("should not change any value for legendary item", function () {
-    const testingItems = [
-      new Item(SULFURAS, 0, 80),
-      new Item(SULFURAS, -1, 80),
-      new Item(SULFURAS, 5, 80),
-    ];
+    const testingItems = [new Item(SULFURAS, 0, 80), new Item(SULFURAS, -1, 80), new Item(SULFURAS, 5, 80)];
 
     const gildedRose = new Shop(testingItems);
     const items = gildedRose.updateQuality();
@@ -123,25 +119,19 @@ describe("Backstage passes to a TAFKAL80ETC concert item", function () {
     expect(items[0].quality).toBe(0);
   });
 });
-//
-// describe("Conjured Mana Cake item", function () {
-//   it("should decrease quality for Conjured item by 2", function () {
-//     const gildedRose = new Shop([new Item(CONJURED, 3, 6)]);
-//     const items = gildedRose.updateQuality();
-//
-//     /**
-//      * TODO this one is failing because it is still to add logic for decreasing quality
-//      */
-//     expect(items[0].quality).toBe(4);
-//   });
-//
-//   it("should decrease quality for stored item by 4 when expired", function () {
-//     const gildedRose = new Shop([new Item(CONJURED, -3, 6)]);
-//     const items = gildedRose.updateQuality();
-//
-//     /**
-//      * TODO this one is failing because it is still to add logic for decreasing quality
-//      */
-//     expect(items[0].quality).toBe(2);
-//   });
-// });
+
+describe("Conjured Mana Cake item", function () {
+  it("should decrease quality for Conjured item by 2", function () {
+    const gildedRose = new Shop([new Item(CONJURED, 3, 6)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(4);
+  });
+
+  it("should decrease quality for stored item by 4 when expired", function () {
+    const gildedRose = new Shop([new Item(CONJURED, -3, 6)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(2);
+  });
+});
