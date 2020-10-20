@@ -9,6 +9,20 @@ describe('Gilded Rose', function () {
 });
 
 describe('default item', function () {
+  it('should decrease sellIn for default item by 1', function () {
+    const gildedRose = new Shop([new Item('default', 5, 9)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(4);
+  });
+
+  it('should decrease sellIn for default item to negative number', function () {
+    const gildedRose = new Shop([new Item('default', 0, 9)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(-1);
+  });
+
   it('should decrease quality for default item by 1', function () {
     const gildedRose = new Shop([new Item('default', 5, 9)]);
     const items = gildedRose.updateQuality();
