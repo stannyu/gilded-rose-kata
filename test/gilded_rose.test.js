@@ -78,51 +78,51 @@ describe("Aged Brie", function () {
     expect(items[3].quality).toBe(50);
   });
 });
-//
-// describe("Sulfuras, Legendary item", function () {
-//   it("should not change any value for legendary item", function () {
-//     const testingItems = [
-//       new Item(SULFURAS, 0, 80),
-//       new Item(SULFURAS, -1, 80),
-//       new Item(SULFURAS, 5, 80),
-//     ];
-//
-//     const gildedRose = new Shop(testingItems);
-//     const items = gildedRose.updateQuality();
-//
-//     expect(items[0].quality).toBe(80);
-//     expect(items[0].sellIn).toBe(0);
-//
-//     expect(items[1].quality).toBe(80);
-//     expect(items[1].sellIn).toBe(-1);
-//
-//     expect(items[2].quality).toBe(80);
-//     expect(items[2].sellIn).toBe(5);
-//   });
-// });
-//
-// describe("Backstage passes to a TAFKAL80ETC concert item", function () {
-//   it("should increase quality by 2 when sellIn is 10 days or less but more than 5 days", function () {
-//     const gildedRose = new Shop([new Item(BACKSTAGE, 10, 10)]);
-//     const items = gildedRose.updateQuality();
-//
-//     expect(items[0].quality).toBe(12);
-//   });
-//
-//   it("should increase quality by 3 when sellIn is 5 days or less but more than 0 days", function () {
-//     const gildedRose = new Shop([new Item(BACKSTAGE, 5, 10)]);
-//     const items = gildedRose.updateQuality();
-//
-//     expect(items[0].quality).toBe(13);
-//   });
-//
-//   it("should set quality to 0 after the concert", function () {
-//     const gildedRose = new Shop([new Item(BACKSTAGE, 0, 10)]);
-//     const items = gildedRose.updateQuality();
-//
-//     expect(items[0].quality).toBe(0);
-//   });
-// });
+
+describe("Sulfuras, Legendary item", function () {
+  it("should not change any value for legendary item", function () {
+    const testingItems = [
+      new Item(SULFURAS, 0, 80),
+      new Item(SULFURAS, -1, 80),
+      new Item(SULFURAS, 5, 80),
+    ];
+
+    const gildedRose = new Shop(testingItems);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(80);
+    expect(items[0].sellIn).toBe(0);
+
+    expect(items[1].quality).toBe(80);
+    expect(items[1].sellIn).toBe(-1);
+
+    expect(items[2].quality).toBe(80);
+    expect(items[2].sellIn).toBe(5);
+  });
+});
+
+describe("Backstage passes to a TAFKAL80ETC concert item", function () {
+  it("should increase quality by 2 when sellIn is 10 days or less but more than 5 days", function () {
+    const gildedRose = new Shop([new Item(BACKSTAGE, 10, 10)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(12);
+  });
+
+  it("should increase quality by 3 when sellIn is 5 days or less but more than 0 days", function () {
+    const gildedRose = new Shop([new Item(BACKSTAGE, 5, 10)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(13);
+  });
+
+  it("should set quality to 0 after the concert", function () {
+    const gildedRose = new Shop([new Item(BACKSTAGE, 0, 10)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(0);
+  });
+});
 //
 // describe("Conjured Mana Cake item", function () {
 //   it("should decrease quality for Conjured item by 2", function () {

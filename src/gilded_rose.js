@@ -1,4 +1,12 @@
-import {AGED_BRIE, BACKSTAGE, EXPIRE, MAX_ITEM_VALUE, MIN_ITEM_VALUE, SULFURAS} from "./constants";
+import {
+  AGED_BRIE,
+  BACKSTAGE,
+  EXPIRE,
+  LEGENDARY_ITEM_VALUE,
+  MAX_ITEM_VALUE,
+  MIN_ITEM_VALUE,
+  SULFURAS,
+} from "./constants";
 
 class Item {
   constructor(name, sellIn, quality) {
@@ -30,6 +38,29 @@ function handleDefaultItem(item) {
   return item;
 }
 
+function handleLegendaryItem(item) {
+  item.quality = LEGENDARY_ITEM_VALUE;
+  return item;
+}
+
+function handleBackstageItem(item) {
+  const { sellIn, quality } = item;
+  let newQuality = quality;
+
+  if (5 < sellIn && sellIn <= 10) {
+    newQuality = newQuality + 2;
+  } else if (0 < sellIn && sellIn <= 5) {
+    newQuality = newQuality + 3;
+  } else if (sellIn <= 0) {
+    newQuality = 0;
+  }
+
+  item.quality = newQuality;
+  item.sellIn = item.sellIn - 1;
+
+  return item;
+}
+
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -44,6 +75,10 @@ class Shop {
     switch (item.name) {
       case AGED_BRIE:
         return handleAgedBrieItem(item);
+      case SULFURAS:
+        return handleLegendaryItem(item);
+      case BACKSTAGE:
+        return handleBackstageItem(item);
       default:
         return handleDefaultItem(item);
     }
