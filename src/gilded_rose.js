@@ -1,4 +1,4 @@
-import {AGED_BRIE, BACKSTAGE, EXPIRE, MAX_ITEM_VALUE, SULFURAS} from "./constants";
+import {AGED_BRIE, BACKSTAGE, EXPIRE, MAX_ITEM_VALUE, MIN_ITEM_VALUE, SULFURAS} from "./constants";
 
 class Item {
   constructor(name, sellIn, quality) {
@@ -8,13 +8,25 @@ class Item {
   }
 }
 
+function setMaxQuality(quality) {
+  return quality > MAX_ITEM_VALUE ? MAX_ITEM_VALUE : quality;
+}
+
+function setMinQuality(quality) {
+  return quality < MIN_ITEM_VALUE ? MIN_ITEM_VALUE : quality;
+}
+
 function handleAgedBrieItem(item) {
   let newQuality = item.sellIn < EXPIRE ? item.quality + 2 : item.quality + 1;
-  if (newQuality > MAX_ITEM_VALUE) {
-    newQuality = MAX_ITEM_VALUE;
-  }
-  item.quality = newQuality;
+  item.quality = setMaxQuality(newQuality);
 
+  return item;
+}
+
+function handleDefaultItem(item) {
+  const newQuality = item.sellIn <= EXPIRE ? item.quality - 2 : item.quality - 1;
+  item.quality = setMinQuality(newQuality);
+  item.sellIn = item.sellIn - 1;
   return item;
 }
 
@@ -33,7 +45,7 @@ class Shop {
       case AGED_BRIE:
         return handleAgedBrieItem(item);
       default:
-        return item;
+        return handleDefaultItem(item);
     }
 
     // if (item.name != AGED_BRIE && item.name != BACKSTAGE) {
