@@ -77,3 +77,29 @@ describe('Aged Brie', function () {
     expect(items[3].quality).toBe(50);
   });
 });
+
+describe('Sulfuras, Legendary item', function () {
+  it('should not change any value for legendary item', function () {
+    const testingItems = [
+      new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+      new Item('Sulfuras, Hand of Ragnaros', -1, 80),
+      new Item('Sulfuras, Hand of Ragnaros', 5, 80),
+      new Item('Sulfuras, Hand of Ragnaros', 5, 20),
+    ];
+
+    const gildedRose = new Shop(testingItems);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(80);
+    expect(items[0].sellIn).toBe(0);
+
+    expect(items[1].quality).toBe(80);
+    expect(items[1].sellIn).toBe(-1);
+
+    expect(items[2].quality).toBe(80);
+    expect(items[2].sellIn).toBe(5);
+
+    expect(items[3].quality).toBe(20);
+    expect(items[3].sellIn).toBe(5);
+  });
+});
